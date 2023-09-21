@@ -92,6 +92,8 @@ public class Playlist
                  options.AddArgument($"--user-agent={userAgent}");
                 options.AddArguments("headless");
                  options.AddArgument("--enable-javascript");
+                 HtmlNode headerNode;
+                 HtmlDocument doc;
                  using (var driver = new ChromeDriver(options))
                 {
                     driver.Navigate().GoToUrl(url);
@@ -103,11 +105,11 @@ public class Playlist
                     // Now you can access the page source
                     var pageSource = driver.PageSource;
                     // Thread.Sleep(5000);
-                    var doc = new HtmlDocument();
+                    doc = new HtmlDocument();
                     doc.LoadHtml(pageSource);
                     // Thread.Sleep(5000);
-                    var headerNode = doc.DocumentNode.SelectSingleNode("//music-detail-header");
-                    string name = headerNode.SelectNodes("./h1").First().InnerHtml;
+                     headerNode = doc.DocumentNode.SelectSingleNode("//music-detail-header");
+                    //string name = headerNode.SelectNodes("./h1").First().InnerHtml;
                 }
                 
                 
@@ -125,34 +127,34 @@ public class Playlist
                 // var headerNode = divs.First();
                 var playlistItems = new List<Playlist>();
 
-                // if (headerNode != null)
-                // {
-                //     var playlistItem = new Playlist();
-                //
-                //     playlistItem.Name = headerNode.SelectSingleNode("./h1").InnerHtml;
-                //         playlistItem.AvatarUrl = headerNode.Attributes["image-src"].Value;
-                //         playlistItem.Description = headerNode.Attributes["secondary-text"].Value;
-                //
-                //         var songNodes = doc.DocumentNode.SelectNodes("//music-image-row");
-                //         if (songNodes != null)
-                //         {
-                //             playlistItem.Songs = new List<Song>();
-                //             foreach (var songNode in songNodes)
-                //             {
-                //                 var songItem = new Song();
-                //
-                //                 songItem.SongName = songNode.Attributes["primary-text"].Value;
-                //                 songItem.ArtistName = songNode.Attributes["secondary-text-1"].Value;
-                //                 songItem.AlbumName = songNode.Attributes["secondary-text-2"].Value;
-                //                 songItem.Duration = songNode
-                //                     .SelectSingleNode("./div[@class='content']/div[@class='col4']/music-link")
-                //                     .Attributes["title"].Value;
-                //                 playlistItem.Songs.Add(songItem);
-                //             }
-                //         }
-                //
-                //         playlistItems.Add(playlistItem);
-                // }
+                if (headerNode != null)
+                {
+                    var playlistItem = new Playlist();
+                
+                    playlistItem.Name = headerNode.SelectSingleNode("./h1").InnerHtml;
+                        playlistItem.AvatarUrl = headerNode.Attributes["image-src"].Value;
+                        playlistItem.Description = headerNode.Attributes["secondary-text"].Value;
+                
+                        var songNodes = doc.DocumentNode.SelectNodes("//music-image-row");
+                        if (songNodes != null)
+                        {
+                            playlistItem.Songs = new List<Song>();
+                            foreach (var songNode in songNodes)
+                            {
+                                var songItem = new Song();
+                
+                                songItem.SongName = songNode.Attributes["primary-text"].Value;
+                                songItem.ArtistName = songNode.Attributes["secondary-text-1"].Value;
+                                songItem.AlbumName = songNode.Attributes["secondary-text-2"].Value;
+                                songItem.Duration = songNode
+                                    .SelectSingleNode("./div[@class='content']/div[@class='col4']/music-link")
+                                    .Attributes["title"].Value;
+                                playlistItem.Songs.Add(songItem);
+                            }
+                        }
+                
+                        playlistItems.Add(playlistItem);
+                }
 
                 return playlistItems;
             }
