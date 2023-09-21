@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:testMusic="clr-namespace:test_music"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="test_music.MainWindow"
+        x:DataType="testMusic:ViewModel"
+        Title="test_music">
+        
+        <DockPanel>
+                <!-- Nested DockPanel for Text Box and Button in the same row -->
+                <DockPanel DockPanel.Dock="Top">
+                        <!-- Small Input Text Box -->
+                        <TextBox x:Name="playlistUrlTextBox" Width="500" Height="30" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <!-- Small Input Button -->
+                        <Button Content="Submit" Width="80" Height="30" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" Click="LoadPlaylists_Click"/>
+                </DockPanel>
+    
+                <!-- ListBox to display playlists -->
+                <ListBox Name="playlistListBox" ItemsSource="{Binding Playlists}">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="testMusic:Playlist">
+                                        <!-- Customize the display for each playlist -->
+                                        <StackPanel>
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                                <Image Source="{Binding AvatarUrl}" Width="100" Height="100"/>
+                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                                <!-- ListBox for displaying songs -->
+                                                <ListBox ItemsSource="{Binding Songs}">
+                                                        <ListBox.ItemTemplate>
+                                                                <DataTemplate x:DataType="testMusic:Song">
+                                                                        <!-- Customize the display for each song -->
+                                                                        <StackPanel>
+                                                                                <TextBlock Text="{Binding SongName}" FontWeight="Bold"/>
+                                                                                <TextBlock Text="{Binding ArtistName}"/>
+                                                                                <TextBlock Text="{Binding AlbumName}"/>
+                                                                                <TextBlock Text="{Binding Duration}"/>
+                                                                        </StackPanel>
+                                                                </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                </ListBox>
+                                        </StackPanel>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+        </DockPanel>
+
+        
+        
+        
+</Window>
