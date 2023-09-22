@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:test_music_mvvm.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:test_music_mvvm.Models"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="test_music_mvvm.Views.PlaylistView"
+             x:DataType="vm:PlaylistViewModel">
+        
+    <DockPanel>
+                <DockPanel DockPanel.Dock="Top">
+                        <TextBox Text="{Binding Url}" Width="500" Height="20" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <Button Content="Submit" Width="80" Height="30" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding LoadPlaylists_Click}"/>
+                </DockPanel>
+                <ListBox ItemsSource="{Binding Items}">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:Playlist">
+                                        <StackPanel>
+                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
+                                                <Image asyncImageLoader:ImageLoader.Source="{Binding AvatarUrl}" Width="100" Height="100" HorizontalAlignment="Left"/>
+                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                                                <ListBox ItemsSource="{Binding Songs}">
+                                                        <ListBox.ItemTemplate>
+                                                                <DataTemplate x:DataType="models:Song">
+                                                                        <StackPanel>
+                                                                                <TextBlock Text="{Binding SongName}" FontWeight="Bold"/>
+                                                                                <TextBlock Text="{Binding ArtistName}"/>
+                                                                                <TextBlock Text="{Binding AlbumName}"/>
+                                                                                <TextBlock Text="{Binding Duration}"/>
+                                                                        </StackPanel>
+                                                                </DataTemplate>
+                                                        </ListBox.ItemTemplate>
+                                                </ListBox>
+                                        </StackPanel>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+        </DockPanel>
+</UserControl>
