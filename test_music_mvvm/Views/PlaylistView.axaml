@@ -10,32 +10,58 @@
              x:DataType="vm:PlaylistViewModel">
         
     <DockPanel>
-                <DockPanel DockPanel.Dock="Top">
+        <DockPanel DockPanel.Dock="Top">
                         <TextBox Text="{Binding Url}" Width="500" Height="20" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                         <Button Content="Submit" Width="80" Height="30" Margin="10" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding LoadPlaylists_Click}"/>
-                </DockPanel>
-                <ListBox ItemsSource="{Binding Items}">
-                        <ListBox.ItemTemplate>
-                                <DataTemplate x:DataType="models:Playlist">
-                                        <StackPanel>
-                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
-                                                <Image asyncImageLoader:ImageLoader.Source="{Binding AvatarUrl}" Width="100" Height="100" HorizontalAlignment="Left"/>
-                                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-                                                <ListBox ItemsSource="{Binding Songs}">
-                                                        <ListBox.ItemTemplate>
-                                                                <DataTemplate x:DataType="models:Song">
-                                                                        <StackPanel>
-                                                                                <TextBlock Text="{Binding SongName}" FontWeight="Bold"/>
-                                                                                <TextBlock Text="{Binding ArtistName}"/>
-                                                                                <TextBlock Text="{Binding AlbumName}"/>
-                                                                                <TextBlock Text="{Binding Duration}"/>
-                                                                        </StackPanel>
-                                                                </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                </ListBox>
-                                        </StackPanel>
-                                </DataTemplate>
-                        </ListBox.ItemTemplate>
-                </ListBox>
+        </DockPanel>
+               
+        <ListBox ItemsSource="{Binding Items}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:Playlist">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Row="0" Grid.Column="0" asyncImageLoader:ImageLoader.Source="{Binding AvatarUrl}" Width="100" Height="100" HorizontalAlignment="Left"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontWeight="Bold" FontSize="14" TextWrapping="Wrap"/>
+
+                                <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Description}" TextWrapping="Wrap"/>
+
+                                <ListBox Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{Binding Songs}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Song">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="320"/>
+                                                    <ColumnDefinition Width="320"/>
+                                                    <ColumnDefinition Width="320"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Grid.Column="0" Text="{Binding SongName}" FontWeight="Bold" TextWrapping="Wrap" Margin="5"/>
+
+                                                <TextBlock Grid.Column="1" Text="{Binding ArtistName}" TextWrapping="Wrap" Margin="5"/>
+
+                                                <TextBlock Grid.Column="2" Text="{Binding AlbumName}" TextWrapping="Wrap" Margin="5"/>
+
+                                                <TextBlock Grid.Column="3" Text="{Binding Duration}" Margin="5"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+        </ListBox>
+
+
         </DockPanel>
 </UserControl>
