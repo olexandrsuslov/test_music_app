@@ -16,7 +16,6 @@ public class PlaylistViewModel : ViewModelBase
 {
     ObservableCollection<Playlist> items;
     private string url;
-    private const int TagsToSkip = 13;
     public string Url { get; set; }
     public ObservableCollection<Playlist> Items
     {
@@ -52,6 +51,7 @@ public class PlaylistViewModel : ViewModelBase
                 //https://music.amazon.com/playlists/B0861VPZ6D
                 string userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36";
                 var options = new ChromeOptions();
+                options.AddArgument("headless");
                 options.AddArgument($"--user-agent={userAgent}");
                 options.AddArgument("--disable-web-security");
                 options.AddArgument("--disable-features=IsolateOrigins,site-per-process");
@@ -81,7 +81,7 @@ public class PlaylistViewModel : ViewModelBase
                     {
                         if (headerNode != null)
                         {
-                            var songNodes = IsRequestForPlaylist() ? doc.DocumentNode.SelectNodes("//music-image-row").Skip(TagsToSkip) : 
+                            var songNodes = IsRequestForPlaylist() ? doc.DocumentNode.SelectNodes("//music-image-row").Where(x => !x.HasClass("disabled-hover")) :
                                 doc.DocumentNode.SelectNodes("//music-text-row");
                             if (songNodes != null)
                             {
