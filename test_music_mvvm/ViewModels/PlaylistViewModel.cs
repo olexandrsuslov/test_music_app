@@ -70,7 +70,7 @@ public class PlaylistViewModel : ViewModelBase
                     var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
                     wait.Until(ExpectedConditions.ElementIsVisible(By.Id("Web.TemplatesInterface.v1_0.Touch.DetailTemplateInterface.DetailTemplate_1")));
                     
-                    int scrollIncrement = 1000;
+                    int scrollIncrement = 1500;
                     IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     long scrollHeight = (long)js.ExecuteScript("return document.body.scrollHeight;");
                     long currentPosition = 0;
