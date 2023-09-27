@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XnnVqXCT5UIqtPpsWzydwU1HT3PQrj1jmudPxUl42jmdJPWB6GnELNo4c8O38CWRJZCENV2/wkZAG70Lr4aXzw==",
+  "dgSpecHash": "hrdX3XBx3lAThndPVepfEHf4gzQ5HFnaYxUW0FtXDrWWjyLHyBt1RB5TleoJzpzHFKhY6bw7DpIVrG1bXaL7mg==",
   "success": true,
   "projectFilePath": "/Users/oleksandrsuslov/Projects/test_music_mvvm/test_music_mvvm/test_music_mvvm.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "/Users/oleksandrsuslov/.nuget/packages/avalonia.themes.simple/11.0.2/avalonia.themes.simple.11.0.2.nupkg.sha512",
     "/Users/oleksandrsuslov/.nuget/packages/avalonia.win32/11.0.2/avalonia.win32.11.0.2.nupkg.sha512",
     "/Users/oleksandrsuslov/.nuget/packages/avalonia.x11/11.0.2/avalonia.x11.11.0.2.nupkg.sha512",
+    "/Users/oleksandrsuslov/.nuget/packages/dotnetseleniumextras.waithelpers/3.11.0/dotnetseleniumextras.waithelpers.3.11.0.nupkg.sha512",
     "/Users/oleksandrsuslov/.nuget/packages/dynamicdata/7.9.5/dynamicdata.7.9.5.nupkg.sha512",
     "/Users/oleksandrsuslov/.nuget/packages/harfbuzzsharp/2.8.2.3/harfbuzzsharp.2.8.2.3.nupkg.sha512",
     "/Users/oleksandrsuslov/.nuget/packages/harfbuzzsharp.nativeassets.linux/2.8.2.3/harfbuzzsharp.nativeassets.linux.2.8.2.3.nupkg.sha512",

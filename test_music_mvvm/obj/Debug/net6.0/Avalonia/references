@@ -44,6 +44,7 @@
 /Users/oleksandrsuslov/.nuget/packages/microsoft.netcore.app.ref/6.0.20/ref/net6.0/netstandard.dll
 /Users/oleksandrsuslov/.nuget/packages/newtonsoft.json/13.0.1/lib/netstandard2.0/Newtonsoft.Json.dll
 /Users/oleksandrsuslov/.nuget/packages/reactiveui/18.3.1/lib/net6.0/ReactiveUI.dll
+/Users/oleksandrsuslov/.nuget/packages/dotnetseleniumextras.waithelpers/3.11.0/lib/netstandard2.0/SeleniumExtras.WaitHelpers.dll
 /Users/oleksandrsuslov/.nuget/packages/skiasharp/2.88.3/lib/net6.0/SkiaSharp.dll
 /Users/oleksandrsuslov/.nuget/packages/splat/14.4.1/lib/net6.0/Splat.dll
 /Users/oleksandrsuslov/.nuget/packages/microsoft.netcore.app.ref/6.0.20/ref/net6.0/System.AppContext.dll

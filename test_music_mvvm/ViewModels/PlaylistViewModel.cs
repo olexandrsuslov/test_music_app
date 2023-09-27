@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using ReactiveUI;
+using SeleniumExtras.WaitHelpers;
 using test_music_mvvm.Models;
 
 namespace test_music_mvvm.ViewModels;
@@ -47,8 +49,9 @@ public class PlaylistViewModel : ViewModelBase
             {
                 //https://music.amazon.com/playlists/B08BWK8W15
                 //https://music.amazon.com/albums/B001230JXC
-                var playlistItems = new List<Playlist>();
                 //https://music.amazon.com/playlists/B0861VPZ6D
+                var playlistItems = new List<Playlist>();
+                
                 string userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36";
                 var options = new ChromeOptions();
                 options.AddArgument("headless");
@@ -62,13 +65,16 @@ public class PlaylistViewModel : ViewModelBase
                     HtmlNode headerNode;
                     HtmlDocument doc;
                     driver.Navigate().GoToUrl(Url);
-                    Thread.Sleep(5000);
+                    
+                    //waiting for full page load
+                    var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+                    wait.Until(ExpectedConditions.ElementIsVisible(By.Id("Web.TemplatesInterface.v1_0.Touch.DetailTemplateInterface.DetailTemplate_1")));
                     
                     int scrollIncrement = 1000;
                     IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                     long scrollHeight = (long)js.ExecuteScript("return document.body.scrollHeight;");
                     long currentPosition = 0;
-
+                    
                     doc = new HtmlDocument();
                     doc.LoadHtml(driver.PageSource);
                     headerNode = doc.DocumentNode.SelectNodes("//music-detail-header").Last();
@@ -106,8 +112,9 @@ public class PlaylistViewModel : ViewModelBase
                             
                         }
                         
-                        
                         js.ExecuteScript($"window.scrollBy(0, {scrollIncrement});");
+                        //wait.Until(dv => ((IJavaScriptExecutor)dv).ExecuteScript($"window.scrollBy(0, {scrollIncrement});"));
+                        //wait.Until(d => (bool)js.ExecuteScript($"return window.scrollY > 0 && window.scrollY >= {currentPosition};")); 
                         currentPosition += scrollIncrement;
                         Thread.Sleep(2000); 
                         doc = new HtmlDocument();
@@ -123,6 +130,7 @@ public class PlaylistViewModel : ViewModelBase
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 return null;
             }
         }

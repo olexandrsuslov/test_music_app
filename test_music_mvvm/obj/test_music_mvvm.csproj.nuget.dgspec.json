@@ -69,6 +69,10 @@
               "target": "Package",
               "version": "[11.0.2, )"
             },
+            "DotNetSeleniumExtras.WaitHelpers": {
+              "target": "Package",
+              "version": "[3.11.0, )"
+            },
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.53, )"

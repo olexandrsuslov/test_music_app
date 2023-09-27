@@ -143,3 +143,4 @@
 /Users/oleksandrsuslov/Projects/test_music_mvvm/test_music_mvvm/bin/Debug/net6.0/Newtonsoft.Json.dll
 /Users/oleksandrsuslov/Projects/test_music_mvvm/test_music_mvvm/bin/Debug/net6.0/WebDriver.dll
 /Users/oleksandrsuslov/Projects/test_music_mvvm/test_music_mvvm/bin/Debug/net6.0/AsyncImageLoader.Avalonia.dll
+/Users/oleksandrsuslov/Projects/test_music_mvvm/test_music_mvvm/bin/Debug/net6.0/SeleniumExtras.WaitHelpers.dll
